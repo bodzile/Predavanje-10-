@@ -23,4 +23,11 @@ class CityTemperatureController extends Controller
         return redirect()->back();
     }
 
+    public function allCities()
+    {
+        $cities=CityTemperatureModel::all();
+
+        return view("all-cities",compact("cities"));
+    }
+
 }
