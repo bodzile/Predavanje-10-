@@ -26,7 +26,10 @@ Route::middleware(["auth",CheckAdminMiddleware::class])->prefix("admin")->group(
         ->name("city.add");
 
     Route::get("/all-cities",[CityTemperatureController::class,"allCities"])
-        ->name("citi.allCities");
+        ->name("city.allCities");
+
+    Route::get("/delete-city/{city}",[CityTemperatureController::class,"deleteCity"])
+        ->name("city.deleteCity");
 });
 
 require __DIR__.'/auth.php';

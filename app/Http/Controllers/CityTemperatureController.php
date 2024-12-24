@@ -30,4 +30,11 @@ class CityTemperatureController extends Controller
         return view("all-cities",compact("cities"));
     }
 
+    public function deleteCity(Request $request,CityTemperatureModel $city)
+    {
+        $city->delete();
+
+        return redirect()->back();
+    }
+
 }
