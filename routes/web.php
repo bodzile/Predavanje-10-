@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CityTemperatureController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\CheckAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,13 +19,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware("auth")->prefix("admin")->group(function(){
+Route::middleware(["auth",CheckAdminMiddleware::class])->prefix("admin")->group(function(){
     Route::view("/add-city","add-city");
 
     Route::post("/add-city-action",[CityTemperatureController::class,"addCity"])
         ->name("city.add");
 
-    Route::get("/all-cities",[CityTemperatureController::class,"allCities"]);
+    Route::get("/all-cities",[CityTemperatureController::class,"allCities"])
+        ->name("citi.allCities");
 });
 
 require __DIR__.'/auth.php';
