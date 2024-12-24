@@ -1,0 +1,13 @@
+Domaci: 
+    1. /prognoza
+        ->prikazuju se gradovi
+        ->prikazuju se temperaturess
+    *koristiti auth sa pristup stranici
+
+    2. /admin/*
+        -baza: pomocu migracije napraviti tabelu City(city,tempereture) ++
+        -/admin/cities -> prikazuju se svi gradovi (model CityTemperatures)
+        -/admin/add-city -> dodavanje grada
+        -/admin/edit/id -> editovanje gradQa 
+        -/admin/delete/id -> brisanje grada
+    *koristiti auth za pristup svim stranicama i middleware da li je admin
