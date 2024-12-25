@@ -12,17 +12,17 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            @foreach ($cities as $city )
+        @foreach ($cities as $city )
+            <tr>
                 <th scope="row">{{$city->id}}</th>
                 <td>{{$city->city}}</td>
                 <td>{{$city->temperature}}</td>
                 <td>
-                    <button class="btn btn-primary">Edit</button> &nbsp;
+                    <a href="{{route("city.editCity",["cityObject" => $city->id])}}" class="btn btn-primary">Edit</a> &nbsp;
                     <a href="{{route("city.deleteCity",["city" => $city->id])}}" class="btn btn-danger">Delete</a>
                 </td>
-            @endforeach
-        </tr>
+            </tr>
+        @endforeach
     </tbody>
     </table>
 @endsection

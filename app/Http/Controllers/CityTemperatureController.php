@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class CityTemperatureController extends Controller
 {
-    
     public function addCity(Request $request)
     {
         $request->validate([
@@ -35,6 +34,11 @@ class CityTemperatureController extends Controller
         $city->delete();
 
         return redirect()->back();
+    }
+
+    public function editCity(Request $request,CityTemperatureModel $cityObject)
+    {
+        return view("edit-city",compact("cityObject"));
     }
 
 }

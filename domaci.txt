@@ -9,5 +9,5 @@ Domaci:
         -/admin/cities -> prikazuju se svi gradovi (model CityTemperatures) ++
         -/admin/add-city -> dodavanje grada ++ 
         -/admin/edit/id -> editovanje grada
-        -/admin/delete/id -> brisanje grada
+        -/admin/delete/id -> brisanje grada ++
     *koristiti auth za pristup svim stranicama i middleware da li je admin ++
