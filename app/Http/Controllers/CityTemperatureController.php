@@ -41,4 +41,18 @@ class CityTemperatureController extends Controller
         return view("edit-city",compact("cityObject"));
     }
 
+    public function saveUpdatedCity(Request $request,CityTemperatureModel $cityObject)
+    {
+        $request->validate([
+            "city" => "required",
+            "temperature" => "required|numeric"
+        ]);
+
+        $cityObject->city=$request->get("city");
+        $cityObject->temperature=$request->get("temperature");
+        $cityObject->save();
+
+        return redirect(route("city.allCities"));
+    }
+
 }

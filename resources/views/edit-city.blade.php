@@ -2,7 +2,7 @@
 
 @section("pageContent")
     <h2>Izmeni grad</h2>
-    <form class="w-25" method="POST" action="{{route("city.saveUpdate")}}">
+    <form class="w-25" method="POST" action="{{route("city.saveUpdate",["cityObject" => $cityObject->id])}}">
         {{csrf_field()}}
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Grad</label>

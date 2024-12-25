@@ -34,7 +34,7 @@ Route::middleware(["auth",CheckAdminMiddleware::class])->prefix("admin")->group(
     Route::get("/edit/{cityObject}",[CityTemperatureController::class,"editCity"])
         ->name("city.editCity");
 
-    Route::post("/saveEdit",[CityTemperatureController::class,"saveUpdatedCity"])
+    Route::post("/saveEdit/{cityObject}",[CityTemperatureController::class,"saveUpdatedCity"])
         ->name("city.saveUpdate");
 });
 
