@@ -21,7 +21,7 @@ class CitySeeder extends Seeder
         for($i=0;$i<$amount;$i++)
         {
             $city=$faker->city();
-            $cityObject=CityModel::where(["name" => $city]);
+            $cityObject=CityModel::where(["name" => $city])->first();
             if($cityObject) continue;
 
             CityModel::create([
