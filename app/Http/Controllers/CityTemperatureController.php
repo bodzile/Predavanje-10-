@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class CityTemperatureController extends Controller
 {
-
     public function index()
     {
         $weather=CityTemperatureModel::all();
@@ -61,5 +60,7 @@ class CityTemperatureController extends Controller
 
         return redirect(route("city.allCities"));
     }
+
+    
 
 }

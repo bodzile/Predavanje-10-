@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CityTemperatureController;
+use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CheckAdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -39,5 +40,7 @@ Route::middleware(["auth",CheckAdminMiddleware::class])->prefix("admin")->group(
 });
 
 Route::get("/prognoza",[CityTemperatureController::class,"index"]);
+
+Route::get("/forecast/{city}",[ForecastController::class,"index"]);
 
 require __DIR__.'/auth.php';

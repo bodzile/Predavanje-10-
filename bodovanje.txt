@@ -3,3 +3,7 @@
 1. Provera da li korisnik vec postoji - 1 ++
 2. Dodavanje return u if (ja sam exit) - 1 ++
 3. Dodavanje continue u petlju - 1 ++
+4. Dodati stranicu za forecast narednih 5 dana preko url-a se prosledjuje grad sa proverom da li posojig rad - 2 ++
+5. Handlovati ako se prosledi grad sa razlicitim velicinama slova - 1 ++
+
+Ukupno: 6
