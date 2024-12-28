@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class CityTemperatureController extends Controller
 {
+
+    public function index()
+    {
+        $weather=CityTemperatureModel::all();
+        return view("weather-cast",compact("weather"));
+    }
+
     public function addCity(Request $request)
     {
         $request->validate([

@@ -38,4 +38,6 @@ Route::middleware(["auth",CheckAdminMiddleware::class])->prefix("admin")->group(
         ->name("city.saveUpdate");
 });
 
+Route::get("/prognoza",[CityTemperatureController::class,"index"]);
+
 require __DIR__.'/auth.php';
