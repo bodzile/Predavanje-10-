@@ -16,7 +16,7 @@ Domaci:
 -------------------------------------------
 
     3. Napraviti tabelu cities
-        *name (unique polje)
+        *name (unique polje) ++ 
         *napraviti seeder koji ce upisati 100 gradova
     
     4. Napraviti tabelu Forecasts
@@ -26,7 +26,6 @@ Domaci:
          *Napraviti seeder za forecasts:
             *Izvuci sve cities iz baze, generisati 5 temperatura za svaki grad
         
-    
     5. Prepraviti tabelu "weather" tako da:
         *Nema vise polje city vec ima polje city_id koji je foreign key iz tabele cities
         *Prepraviti seeder za Weather
