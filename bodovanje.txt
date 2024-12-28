@@ -1,0 +1,4 @@
+
+
+1. Provera da li korisnik vec postoji - 1 ++
+2. Dodavanje return u if (ja sam exit) - 1 ++
