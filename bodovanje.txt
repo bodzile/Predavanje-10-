@@ -2,3 +2,4 @@
 
 1. Provera da li korisnik vec postoji - 1 ++
 2. Dodavanje return u if (ja sam exit) - 1 ++
+3. Dodavanje continue u petlju - 1 ++

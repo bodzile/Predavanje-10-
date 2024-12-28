@@ -21,6 +21,13 @@ class CityTemperaturesSeeder extends Seeder
 
         foreach($prognoza as $city => $temperature)
         {
+            $weather=CityTemperatureModel::where(["city" => $city])->first();
+            if($weather instanceof CityTemperatureModel)
+            {
+                $this->command->error("Grad: $city vec postoji");
+                continue;
+            }
+
             CityTemperatureModel::create([
                 "city" => $city,
                 "temperature" => $temperature
