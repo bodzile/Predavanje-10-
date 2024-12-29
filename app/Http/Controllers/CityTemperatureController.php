@@ -16,12 +16,12 @@ class CityTemperatureController extends Controller
     public function addCity(Request $request)
     {
         $request->validate([
-            "city" => "required|unique:city_temperatures",
+            "city" => "required|numeric|min:1",
             "temperature" => "required|numeric"
         ]);
 
         CityTemperatureModel::create([
-            "city" => $request->get("city"),
+            "city_id" => $request->get("city"),
             "temperature" => $request->get("temperature")
         ]);
 
@@ -32,7 +32,7 @@ class CityTemperatureController extends Controller
     {
         $cities=CityTemperatureModel::all();
 
-        return view("all-cities",compact("cities"));
+        return view("admin.all-cities",compact("cities"));
     }
 
     public function deleteCity(Request $request,CityTemperatureModel $city)
@@ -44,7 +44,7 @@ class CityTemperatureController extends Controller
 
     public function editCity(Request $request,CityTemperatureModel $cityObject)
     {
-        return view("edit-city",compact("cityObject"));
+        return view("admin.edit-city",compact("cityObject"));
     }
 
     public function saveUpdatedCity(Request $request,CityTemperatureModel $cityObject)

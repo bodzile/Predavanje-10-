@@ -15,7 +15,7 @@
         @foreach ($cities as $city )
             <tr>
                 <th scope="row">{{$city->id}}</th>
-                <td>{{$city->city}}</td>
+                <td>{{$city->city->name}}</td>
                 <td>{{$city->temperature}}</td>
                 <td>
                     <a href="{{route("city.editCity",["cityObject" => $city->id])}}" class="btn btn-primary">Edit</a> &nbsp;

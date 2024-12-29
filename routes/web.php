@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(["auth",CheckAdminMiddleware::class])->prefix("admin")->group(function(){
-    Route::view("/add-city","add-city");
+    Route::view("/add-city","admin.add-city");
 
     Route::post("/add-city-action",[CityTemperatureController::class,"addCity"])
         ->name("city.add");
