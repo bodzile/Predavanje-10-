@@ -9,7 +9,7 @@ class ForecastModel extends Model
     protected $table="forecasts";
 
     protected $fillable=[
-        "temperature","city_id","date"
+        "temperature","city_id","date","weather_type","probability"
     ];
 
     public $timestamps=false;
