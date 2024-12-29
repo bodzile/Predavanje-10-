@@ -10,4 +10,15 @@ class CityModel extends Model
     protected $fillable=[
         "name"
     ];
+
+    public function cityTemperature()
+    {
+        return $this->belongsTo(CityTemperatureModel::class);
+    }
+
+    public function forecasts()
+    {
+        return $this->hasMany(ForecastModel::class,"city_id","id");
+    }
+
 }

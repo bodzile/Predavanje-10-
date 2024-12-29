@@ -11,4 +11,9 @@ class CityTemperatureModel extends Model
     protected $fillable=[
         "city_id","temperature"
     ];
+
+    public function city()
+    {
+        return $this->hasOne(CityModel::class,"id","city_id");
+    }
 }

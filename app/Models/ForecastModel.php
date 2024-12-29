@@ -13,4 +13,9 @@ class ForecastModel extends Model
     ];
 
     public $timestamps=false;
+
+    public function city()
+    {
+        return $this->hasOne(CityModel::class,"id","city_id");
+    }
 }

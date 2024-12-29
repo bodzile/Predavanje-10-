@@ -41,6 +41,6 @@ Route::middleware(["auth",CheckAdminMiddleware::class])->prefix("admin")->group(
 
 Route::get("/prognoza",[CityTemperatureController::class,"index"]);
 
-Route::get("/forecast/{city}",[ForecastController::class,"index"]);
+Route::get("/forecast/{city:name}",[ForecastController::class,"index"]);
 
 require __DIR__.'/auth.php';
