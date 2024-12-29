@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CityModel;
 use App\Models\CityTemperatureModel;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,12 @@ class CityTemperatureController extends Controller
     {
         $weather=CityTemperatureModel::all();
         return view("weather-cast",compact("weather"));
+    }
+
+    public function addCityEntry()
+    {
+        $cities=CityModel::all();
+        return view("admin.add-city",compact("cities"));
     }
 
     public function addCity(Request $request)
@@ -44,7 +51,8 @@ class CityTemperatureController extends Controller
 
     public function editCity(Request $request,CityTemperatureModel $cityObject)
     {
-        return view("admin.edit-city",compact("cityObject"));
+        $cities=CityModel::all();
+        return view("admin.edit-city",compact("cityObject","cities"));
     }
 
     public function saveUpdatedCity(Request $request,CityTemperatureModel $cityObject)

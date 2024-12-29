@@ -6,8 +6,11 @@
     <form class="w-25" method="POST" action="{{route("city.add")}}">
         {{csrf_field()}}
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Grad id</label>
-        <input type="text" name="city" class="form-control" id="exampleInputEmail1" value="{{old("city")}}" aria-describedby="emailHelp"> 
+        <select name="city" id="" class="form-select">
+            @foreach ($cities as $city)
+                <option value="{{$city->id}}">{{$city->name}}</option>
+            @endforeach
+        </select> 
     </div>
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Temperatura</label>

@@ -5,8 +5,15 @@
     <form class="w-25" method="POST" action="{{route("city.saveUpdate",["cityObject" => $cityObject->id])}}">
         {{csrf_field()}}
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Grad</label>
-        <input type="text" name="city_id" class="form-control" id="exampleInputEmail1" value="{{$cityObject->city_id}}" aria-describedby="emailHelp"> 
+       <select name="city_id" id="" class="form-select">
+            @foreach($cities as $city)
+                @if ($city->id==$cityObject->id)
+                    <option value="{{$city->id}}" selected>{{$city->name}}</option>
+                @else
+                    <option value="{{$city->id}}">{{$city->name}}</option>
+                @endif
+            @endforeach
+       </select>
     </div>
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Temperatura</label>
