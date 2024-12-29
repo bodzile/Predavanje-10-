@@ -50,11 +50,11 @@ class CityTemperatureController extends Controller
     public function saveUpdatedCity(Request $request,CityTemperatureModel $cityObject)
     {
         $request->validate([
-            "city" => "required",
+            "city_id" => "required|numeric|min:1",
             "temperature" => "required|numeric"
         ]);
 
-        $cityObject->city=$request->get("city");
+        $cityObject->city_id=$request->get("city_id");
         $cityObject->temperature=$request->get("temperature");
         $cityObject->save();
 

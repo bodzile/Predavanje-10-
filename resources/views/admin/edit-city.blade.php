@@ -6,7 +6,7 @@
         {{csrf_field()}}
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Grad</label>
-        <input type="text" name="city" class="form-control" id="exampleInputEmail1" value="{{$cityObject->city_id}}" aria-describedby="emailHelp"> 
+        <input type="text" name="city_id" class="form-control" id="exampleInputEmail1" value="{{$cityObject->city_id}}" aria-describedby="emailHelp"> 
     </div>
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Temperatura</label>
