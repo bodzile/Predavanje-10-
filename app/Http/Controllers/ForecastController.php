@@ -28,18 +28,12 @@ class ForecastController extends Controller
     {
         $request->validate([
             "temperature" => "required|numeric",
-            "city_id" => "required",
+            "city_id" => "required|exists:cities,id",
             "weather_type" => "required",
             "date" => "required"
         ]);
 
-        ForecastModel::create([
-            "temperature" => $request->get("temperature"),
-            "city_id" => $request->get("city_id"),
-            "weather_type" => $request->get("weather_type"),
-            "probability" => $request->get("probability"),
-            "date" => $request->get("date")
-        ]);
+        ForecastModel::create($request->all());
 
         return redirect()->back();
     }
