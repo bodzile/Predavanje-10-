@@ -37,6 +37,11 @@ Route::middleware(["auth",CheckAdminMiddleware::class])->prefix("admin")->group(
 
     Route::post("/saveEdit/{cityObject}",[CityTemperatureController::class,"saveUpdatedCity"])
         ->name("city.saveUpdate");
+
+    Route::post("/addForecast",[ForecastController::class,"addForecast"])
+        ->name("forecast.addForecast");
+
+    Route::get("/forecast",[ForecastController::class,"forecastEntry"]);
 });
 
 Route::get("/prognoza",[CityTemperatureController::class,"index"]);
