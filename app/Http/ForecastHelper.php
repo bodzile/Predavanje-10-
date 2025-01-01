@@ -4,6 +4,12 @@ namespace App\Http;
 
 class ForecastHelper
 {
+    const WEATHER_TYPE=[
+        "sunny" => "<i class='fa-solid fa-sun fa-lg'></i>",
+        "rainy" => "<i class='fa-solid fa-cloud-rain fa-lg'></i>",
+        "snowy" => "<i class='fa-solid fa-snowflake fa-lg'></i>"
+    ];
+
     public static function getColorByTemperature($temperature)
     {
         if($temperature <= 0)
@@ -26,5 +32,10 @@ class ForecastHelper
             $probability="";
 
         return $probability;
+    }
+
+    public static function getWeatherIconTag($weather_type)
+    {
+        return self::WEATHER_TYPE[$weather_type];
     }
 }

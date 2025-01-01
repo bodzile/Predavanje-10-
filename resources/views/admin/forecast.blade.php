@@ -43,16 +43,19 @@
         </div>
         <button type="submit" class="btn btn-primary">Dodaj</button>
     </form>
-    @foreach ($cities as $city )
-        <h2 class="mt-4">{{$city->name}}</h2>
-        <ul class="list-group list-group-flush w-25 ">
-            @foreach ($city->forecasts as $forecast )
-                @php
-                    $probability=ForecastHelper::getProbabilityText($forecast->weather_type,$forecast->probability);
-                    $color=ForecastHelper::getColorByTemperature($forecast->temperature);
-                @endphp
-                <li class="list-group-item ">{{$forecast->date}}, <span style="color:{{$color}}; font-weight: bold;">{{$forecast->temperature}}</span> C, weather: {{$forecast->weather_type}} {{$probability}}</li>
-            @endforeach
-        </ul>
-    @endforeach
+    <div class="d-flex flex-wrap gap-3">
+        @foreach ($cities as $city )
+            <ul class="list-group  mb-3">
+            <h2 class="mt-4">{{$city->name}}</h2>
+                @foreach ($city->forecasts as $forecast )
+                    @php
+                        $probability=ForecastHelper::getProbabilityText($forecast->weather_type,$forecast->probability);
+                        $color=ForecastHelper::getColorByTemperature($forecast->temperature);
+                        $weather_icon=ForecastHelper::getWeatherIconTag($forecast->weather_type);
+                    @endphp
+                    <li class="list-group-item ">{{$forecast->date}}, <span style="color:{{$color}}; font-weight: bold;">{{$forecast->temperature}}</span> C, weather: {!! $weather_icon !!} {{$probability}}</li>
+                @endforeach
+            </ul>
+        @endforeach
+    </div>
 @endsection
