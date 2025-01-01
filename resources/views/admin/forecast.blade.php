@@ -20,9 +20,7 @@
             <label class="form-label" for="">Grad</label>
             <select name="city_id" id="" class="form-select" >
                 @foreach ($cities as $city )
-                    @php
-                        $selected=CityHelper::getSelectedIfCityIsOld($city->id,old("city_id"));
-                    @endphp
+                    @php $selected=CityHelper::getSelectedIfCityIsOld($city->id,old("city_id")); @endphp
                     <option value="{{$city->id}}" {{$selected}}>{{$city->name}}</option>
                 @endforeach
             </select>
