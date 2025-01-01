@@ -1,3 +1,8 @@
+@php
+    use App\Http\ForecastHelper;
+    use App\Http\CityHelper;
+@endphp
+
 @extends("layout")
 
 @section("pageContent")
@@ -15,11 +20,10 @@
             <label class="form-label" for="">Grad</label>
             <select name="city_id" id="" class="form-select" >
                 @foreach ($cities as $city )
-                    @if ($city->id==old("city_id"))
-                        <option value="{{$city->id}}" selected>{{$city->name}}</option>
-                    @else
-                        <option value="{{$city->id}}">{{$city->name}}</option>
-                    @endif 
+                    @php
+                        $selected=CityHelper::getSelectedIfCityIsOld($city->id,old("city_id"));
+                    @endphp
+                    <option value="{{$city->id}}" {{$selected}}>{{$city->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -45,11 +49,11 @@
         <h2 class="mt-4">{{$city->name}}</h2>
         <ul class="list-group list-group-flush w-25 ">
             @foreach ($city->forecasts as $forecast )
-                @if ($forecast->weather_type=="sunny")
-                    <li class="list-group-item ">{{$forecast->temperature}} C, {{$forecast->date}}, weather: {{$forecast->weather_type}}</li>
-                @else
-                    <li class="list-group-item ">{{$forecast->temperature}} C, {{$forecast->date}}, weather: {{$forecast->weather_type}} ({{$forecast->probability}}%)</li>
-                @endif
+                @php
+                    $probability=ForecastHelper::getProbabilityText($forecast->weather_type,$forecast->probability);
+                    $color=ForecastHelper::getColorByTemperature($forecast->temperature);
+                @endphp
+                <li class="list-group-item ">{{$forecast->date}}, <span style="color:{{$color}}; font-weight: bold;">{{$forecast->temperature}}</span> C, weather: {{$forecast->weather_type}} {{$probability}}</li>
             @endforeach
         </ul>
     @endforeach
