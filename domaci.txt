@@ -29,3 +29,19 @@ Domaci:
     5. Prepraviti tabelu "weather" tako da:
         *Nema vise polje city vec ima polje city_id koji je foreign key iz tabele cities
         *Prepraviti seeder za Weather
+
+
+    6. Prepraviti forecast seeder
+        *Dodati jos 1 tip vremena "cloudy"
+            *Dodati u seeeder
+            *Dodati ikonicu
+        *Unutra forecast seeder prepraviti logiku:
+            -Ako je weather_type:
+                *Sunny -> temperature moze biti bilo koja
+                *Cloudy -> do 15 stepeni
+                *Rainy -> bilo koja temperatura do -10
+                *Snowy -> Temperatura ce biti 1 ili manje od 1 stepena
+        
+        BONUS:
+            -Temperature ne smeju da variraju vise od 5 stepeni gore/dole
+                *Ako je prva temperature bila 15 stepeni, sledeca ne sme biti veca od 20 i manja od 10 i tako za svaku sledecu

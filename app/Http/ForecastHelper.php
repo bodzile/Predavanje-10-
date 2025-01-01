@@ -7,7 +7,8 @@ class ForecastHelper
     const WEATHER_TYPE=[
         "sunny" => "<i class='fa-solid fa-sun fa-lg'></i>",
         "rainy" => "<i class='fa-solid fa-cloud-rain fa-lg'></i>",
-        "snowy" => "<i class='fa-solid fa-snowflake fa-lg'></i>"
+        "snowy" => "<i class='fa-solid fa-snowflake fa-lg'></i>",
+        "cloudy" => "<i class='fa-solid fa-cloud fa-lg'></i>"
     ];
 
     public static function getColorByTemperature($temperature)
