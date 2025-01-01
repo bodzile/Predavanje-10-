@@ -1,4 +1,4 @@
-@extends("layout")
+@extends("admin.layout")
 
 @section("pageContent")
     <h2>Dodaj grad</h2>

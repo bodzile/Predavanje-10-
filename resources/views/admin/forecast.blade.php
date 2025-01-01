@@ -3,7 +3,7 @@
     use App\Http\CityHelper;
 @endphp
 
-@extends("layout")
+@extends("admin.layout")
 
 @section("pageContent")
     <h2 class="mt-5">Dodaj prognozu</h2>
