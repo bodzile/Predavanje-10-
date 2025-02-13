@@ -5,37 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\CityModel;
 use App\Models\ForecastModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ForecastController extends Controller
 {
 
-    public function index(CityModel $city)
+    public function search(Request $request)
     {
-        $forecasts=$city->forecasts;
+        $cityName=$request->get("city");
 
-        return view("5-day-forecast",compact("forecasts"));        
-    }
+        $cities=CityModel::with("forecastToday")->where("name","like","%$cityName%")->get();
+        
+        if(count($cities) == 0)
+        {
+            return redirect()->back()->with("error","Ne postoji grad");
+        }
 
-    public function forecastEntry()
-    {
-        $cities=CityModel::all();
-
-        return view("admin.forecast",compact("cities"));
-    }
-
-
-    public function addForecast(Request $request)
-    {
-        $request->validate([
-            "temperature" => "required|numeric",
-            "city_id" => "required|exists:cities,id",
-            "weather_type" => "required",
-            "date" => "required"
-        ]);
-
-        ForecastModel::create($request->all());
-
-        return redirect()->back();
+        if(Auth::check())
+        {
+            $userFavourites=Auth::user()->cityFavourites;
+            $userFavourites=$userFavourites->pluck("city_id")->toArray();
+        }
+        else
+        {
+            $userFavourites=[];
+        }
+        
+        
+        return view("search-result",compact("cities","userFavourites"));
     }
 
 }
