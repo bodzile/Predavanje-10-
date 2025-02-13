@@ -1,13 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminForecastController;
 use App\Http\Controllers\CityTemperatureController;
 use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserCitiesController;
 use App\Http\Middleware\CheckAdminMiddleware;
 use Illuminate\Support\Facades\Route;
-
-
-
 
 
 
@@ -30,10 +29,10 @@ Route::middleware(["auth",CheckAdminMiddleware::class])->prefix("admin")->group(
     Route::post("/saveEdit/{cityObject}",[CityTemperatureController::class,"saveUpdatedCity"])
         ->name("city.saveUpdate");
 
-    Route::post("/addForecast",[ForecastController::class,"addForecast"])
+    Route::post("/addForecast",[AdminForecastController::class,"addForecast"])
         ->name("forecast.addForecast");
 
-    Route::get("/forecast",[ForecastController::class,"forecastEntry"]);
+    Route::get("/forecast",[AdminForecastController::class,"forecastEntry"]);
 });
 
 //korisnicke rute
@@ -51,6 +50,13 @@ Route::middleware('auth')->group(function () {
 
 Route::get("/prognoza",[CityTemperatureController::class,"index"]);
 
-Route::get("/forecast/{city:name}",[ForecastController::class,"index"]);
+Route::get("/user-cities/favourite{city}",[UserCitiesController::class,"favourite"])
+    ->name("city.favourite");
+
+Route::get("/forecast/search",[ForecastController::class,"search"])
+    ->name("forecast.search");
+
+Route::get("/forecast/{city:name}",[AdminForecastController::class,"index"])
+    ->name("forecast.permalink");
 
 require __DIR__.'/auth.php';

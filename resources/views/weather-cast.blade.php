@@ -11,11 +11,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($weather as $city )
+        @foreach ($weathers as $weather )
             <tr>
-                <th scope="row">{{$city->id}}</th>
-                <td>{{$city->city}}</td>
-                <td>{{$city->temperature}}</td>
+                <th scope="row">{{$weather->id}}</th>
+                <td>{{$weather->city->name}}</td>
+                <td>{{$weather->temperature}}</td>
             </tr>
         @endforeach
     </tbody>
