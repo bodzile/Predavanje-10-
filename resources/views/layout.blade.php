@@ -16,3 +16,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
+
+
+<form action="{{ route("cart.add") }}" method="post">
+  {{ $i=0 }}
+  @foreach($combinedItems as $item)
+    
+      <input name="group[{{$i}}][name]" type="text" value="{{ $item["name"] }}" readonly>
+      <input name="group[{{$i}}][amount]" type="number" value="{{ $item["amount"] }}">
+      <input name="group[{{$i}}][price]" type="text" value="{{ $item["price"] }}" readonly>
+      <input name="group[{{$i}}][total]" type="text" value="{{ $item["total"] }}" readonly>
+    {{ $i++ }}
+  @endforeach
+  <button type="submit">Order</button>
+</form>
