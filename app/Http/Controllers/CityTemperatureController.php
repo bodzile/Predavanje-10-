@@ -10,8 +10,8 @@ class CityTemperatureController extends Controller
 {
     public function index()
     {
-        $weather=CityTemperatureModel::all();
-        return view("weather-cast",compact("weather"));
+        $weathers=CityTemperatureModel::with("city")->get();
+        return view("weather-cast",compact("weathers"));
     }
 
     public function addCityEntry()
