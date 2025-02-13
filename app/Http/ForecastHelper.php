@@ -39,4 +39,9 @@ class ForecastHelper
     {
         return self::WEATHER_TYPE[$weather_type];
     }
+
+    public static function getWeatherIconTagByCityId($foreacasts)
+    {
+        
+    }
 }
