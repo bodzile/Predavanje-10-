@@ -8,6 +8,32 @@ use App\Http\Controllers\UserCitiesController;
 use App\Http\Middleware\CheckAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
+//korisnicke rute
+Route::view('/', "welcome");
+
+Route::get("/prognoza",[CityTemperatureController::class,"index"]);
+
+Route::get("/user-cities/favourite{city}",[UserCitiesController::class,"favourite"])
+    ->name("city.favourite");
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::prefix("/forecast")->group(function(){
+
+    Route::get("/search",[ForecastController::class,"search"])
+        ->name("forecast.search");
+
+    Route::get("/{city:name}",[AdminForecastController::class,"index"])
+        ->name("forecast.permalink");
+});
 
 
 //admin rute
@@ -34,29 +60,5 @@ Route::middleware(["auth",CheckAdminMiddleware::class])->prefix("admin")->group(
 
     Route::get("/forecast",[AdminForecastController::class,"forecastEntry"]);
 });
-
-//korisnicke rute
-Route::view('/', "welcome");
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-Route::get("/prognoza",[CityTemperatureController::class,"index"]);
-
-Route::get("/user-cities/favourite{city}",[UserCitiesController::class,"favourite"])
-    ->name("city.favourite");
-
-Route::get("/forecast/search",[ForecastController::class,"search"])
-    ->name("forecast.search");
-
-Route::get("/forecast/{city:name}",[AdminForecastController::class,"index"])
-    ->name("forecast.permalink");
 
 require __DIR__.'/auth.php';
