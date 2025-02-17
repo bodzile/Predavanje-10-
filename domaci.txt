@@ -45,3 +45,9 @@ Domaci:
         BONUS:
             -Temperature ne smeju da variraju vise od 5 stepeni gore/dole
                 *Ako je prva temperature bila 15 stepeni, sledeca ne sme biti veca od 20 i manja od 10 i tako za svaku sledecu
+
+    7. Dodaci na predavanje user favourites
+        *Kada se klikne na trash-bin (kantu)
+            *Skinuti City sa liste UserFavourites za tog korisnika
+        *Na glavnoj stranici (gde je pretraga) ispod pretrage prikazati sve gradove koje je user stavio u favourites
+            *Prikazati ikonicu za vreme i danasnju temperaturu u tom gradu

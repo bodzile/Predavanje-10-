@@ -17,9 +17,11 @@ Route::view('/dashboard', 'dashboard')
 
 Route::get("/prognoza",[CityTemperatureController::class,"index"]);
 
-Route::get("/user-cities/favourite{city}",[UserCitiesController::class,"favourite"])
+
+// * User cities *
+Route::get("/user-cities/favourite/{city}",[UserCitiesController::class,"favourite"])
     ->name("city.favourite");
-    
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
