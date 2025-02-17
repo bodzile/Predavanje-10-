@@ -10,7 +10,7 @@
         @foreach ($cities as $city )
             <p>
                 @if (in_array($city->id,$userFavourites))
-                    <a class="btn btn-primary" href="{{route("city.favourite",["city" => $city->id])}}">
+                    <a class="btn btn-primary" href="{{route("city.deleteFavourite",["city" => $city->id])}}">
                         <i class="fa-solid fa-x"></i>
                     </a>
                 @else

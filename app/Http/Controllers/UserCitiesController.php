@@ -32,4 +32,16 @@ class UserCitiesController extends Controller
             return redirect()->back()->with("error","Vec ste dodali ovaj grad u favourites");
         }
     }
+
+    public function deleteFavourite(Request $request,CityModel $city)
+    {
+        $userCity=UserCitiesModel::where(["user_id" => Auth::user()->id, "city_id" => $city->id])->first();
+        if(!$userCity)
+        {
+            return redirect()->back()->with("error","Grad se nalazi u listi favorites");
+        }
+
+        $userCity->delete();
+        return redirect()->back();
+    }
 }

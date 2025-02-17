@@ -1,10 +1,10 @@
 Domaci: 
-    1. /prognoza
+    1. /prognoza ++
         ->prikazuju se gradovi
         ->prikazuju se temperaturess
     *koristiti auth sa pristup stranici
 
-    2. /admin/*
+    2. /admin/* ++
         -baza: pomocu migracije napraviti tabelu City(city,tempereture) ++
         -/admin/cities -> prikazuju se svi gradovi (model CityTemperatures) ++
         -/admin/add-city -> dodavanje grada ++ 
@@ -15,23 +15,23 @@ Domaci:
 
 -------------------------------------------
 
-    3. Napraviti tabelu cities
+    3. Napraviti tabelu cities ++
         *name (unique polje) ++ 
         *napraviti seeder koji ce upisati 100 gradova ++
     
-    4. Napraviti tabelu Forecasts
+    4. Napraviti tabelu Forecasts ++
         *city_id, temperature, date ++
             *Povezati tabele  Forecasts i cities
                 *Forecasts: city_id -> Cities: id
          *Napraviti seeder za forecasts:
             *Izvuci sve cities iz baze, generisati 5 temperatura za svaki grad ++
         
-    5. Prepraviti tabelu "weather" tako da:
+    5. Prepraviti tabelu "weather" tako da: ++
         *Nema vise polje city vec ima polje city_id koji je foreign key iz tabele cities
         *Prepraviti seeder za Weather
 
 
-    6. Prepraviti forecast seeder
+    6. Prepraviti forecast seeder ++
         *Dodati jos 1 tip vremena "cloudy"
             *Dodati u seeeder
             *Dodati ikonicu
@@ -47,7 +47,7 @@ Domaci:
                 *Ako je prva temperature bila 15 stepeni, sledeca ne sme biti veca od 20 i manja od 10 i tako za svaku sledecu
 
     7. Dodaci na predavanje user favourites
-        *Kada se klikne na trash-bin (kantu)
+        *Kada se klikne na trash-bin (kantu) ++
             *Skinuti City sa liste UserFavourites za tog korisnika
         *Na glavnoj stranici (gde je pretraga) ispod pretrage prikazati sve gradove koje je user stavio u favourites
             *Prikazati ikonicu za vreme i danasnju temperaturu u tom gradu
