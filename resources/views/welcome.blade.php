@@ -13,4 +13,13 @@
         <button class="btn btn-primary">Pronadji</button>
     </form>
 
+
+    <h2>Omiljeno</h2>
+    @foreach ($userFavourites as $userFavourite)
+        @php
+            $city=$userFavourite->city; 
+        @endphp
+        <p>{{ $city->name}} , {{ $city->forecastToday->temperature }}</p>
+    @endforeach
+
 @endsection

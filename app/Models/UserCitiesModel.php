@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class UserCitiesModel extends Model
 {
@@ -11,4 +12,11 @@ class UserCitiesModel extends Model
     protected $fillable=[
         "user_id","city_id"
     ];
+
+    public function city()
+    {
+        return $this->hasOne(CityModel::class,"id","city_id");
+    }
+
+    
 }

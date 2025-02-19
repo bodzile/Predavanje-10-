@@ -6,10 +6,28 @@ use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserCitiesController;
 use App\Http\Middleware\CheckAdminMiddleware;
+use App\Models\CityTemperatureModel;
+use App\Models\UserCitiesModel;
 use Illuminate\Support\Facades\Route;
 
 //korisnicke rute
-Route::view('/', "welcome");
+// Route::view('/', view: "welcome");
+Route::get("/",function(){
+
+    $userFavourites=[];
+
+    $user=Auth::user();
+    if($user)
+    {
+        $userFavourites=UserCitiesModel::where([
+            "user_id" => $user->id
+        ])->get();
+         
+    }
+
+    return view("welcome",compact("userFavourites"));
+
+});
 
 Route::view('/dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
