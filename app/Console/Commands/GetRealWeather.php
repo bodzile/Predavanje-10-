@@ -12,7 +12,7 @@ class GetRealWeather extends Command
      *
      * @var string
      */
-    protected $signature = 'weather:get-real-weather';
+    protected $signature = 'weather:get-real-weather {city}';
 
     /**
      * The console command description.
@@ -26,12 +26,21 @@ class GetRealWeather extends Command
      */
     public function handle()
     {
-        $key="13e352e92ec44fed80a145531251902";
-        $city="Belgrade";
-        $url="http://api.weatherapi.com/v1/current.json?key=$key&q=$city";
-        $response=Http::withoutVerifying()->get($url);
 
-        $result=json_decode($response->body(),true);
-        dd($result["current"]["temp_c"]);
+        $response=Http::withoutVerifying()->get(env("WEATHER_API_URL") . "v1/forecast.json",[
+            "key" => env("WEATHER_API_KEY"),
+            "q" => $this->argument("city"),
+            "aqi" => "no",
+            "days" => 1
+        ]);
+
+        $jsonResponse=$response->json();
+        if(isset($jsonResponse["error"]))
+        {
+            $this->output->error($jsonResponse["error"]["message"]);
+            die();
+        }
+
+        dd($jsonResponse);
     }
 }

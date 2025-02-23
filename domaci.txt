@@ -51,3 +51,12 @@ Domaci:
             *Skinuti City sa liste UserFavourites za tog korisnika
         *Na glavnoj stranici (gde je pretraga) ispod pretrage prikazati sve gradove koje je user stavio u favourites
             *Prikazati ikonicu za vreme i danasnju temperaturu u tom gradu
+
+    8. Kada se uradi pretraga, poziva se komanda za forecast
+        *Ako grad ne postoji ubaciti taj grad u bazu
+        *Upisati forecast u tabelu forecast (24 dana ili koliko vec ima)
+            -probability => chance of rain
+            -naci weather type
+
+        BONUS:
+            *Ako postoji prognoza za danas za taj grad, ne poziva se api
