@@ -68,7 +68,4 @@ class CityTemperatureController extends Controller
 
         return redirect(route("city.allCities"));
     }
-
-    
-
 }
