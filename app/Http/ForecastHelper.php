@@ -37,7 +37,15 @@ class ForecastHelper
 
     public static function getWeatherIconTag($weather_type)
     {
-        return self::WEATHER_TYPE[$weather_type];
+        return $icon=match($weather_type){
+            "sunny" => "<i class='fa-solid fa-sun fa-lg'></i>",
+            "rainy" => "<i class='fa-solid fa-cloud-rain fa-lg'></i>",
+            "snowy" => "<i class='fa-solid fa-snowflake fa-lg'></i>",
+            "cloudy" => "<i class='fa-solid fa-cloud fa-lg'></i>",
+            default => "<i class='fa-solid fa-sun fa-lg'></i>"
+        };
+
+        //return self::WEATHER_TYPE[$weather_type];
     }
 
     public static function getWeatherIconTagByCityId($foreacasts)
