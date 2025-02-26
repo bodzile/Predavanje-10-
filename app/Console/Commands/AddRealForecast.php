@@ -36,12 +36,14 @@ class AddRealForecast extends Command
             
         ]);
 
-        if(!$response->successful())
+
+        $jsonResponse=$response->json();
+        if(isset($jsonResponse["error"]))
         {
             return false;
         }
 
-        $jsonResponse=$response->json();
+        
         $cityObject=CityModel::create([
             "name" => $city
         ]);
@@ -71,7 +73,5 @@ class AddRealForecast extends Command
         }
 
         return true;
-        //dd("uspesno");
-
     }
 }

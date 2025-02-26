@@ -7,6 +7,7 @@ use App\Models\CityModel;
 use App\Models\ForecastModel;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class ForecastController extends Controller
@@ -17,6 +18,8 @@ class ForecastController extends Controller
         $cityName=$request->get("city");
 
         $cities=CityModel::with("forecastToday")->where("name","like","%$cityName%")->get();
+
+        //Artisan::call("weather:add-real-forecast",["city" => $cityName]);
         
         if(count($cities) == 0)
         {
