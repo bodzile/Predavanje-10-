@@ -48,24 +48,26 @@ class AddRealForecast extends Command
             "name" => $city
         ]);
 
-        foreach($jsonResponse["forecast"]["forecastday"] as $forecastDay )
+        foreach($jsonResponse["forecast"]["forecastday"] as $forecastDayArray )
         {
+            $forecastDay=$forecastDayArray["day"];
             $weather_type="sunny";
             $probability=null;
-            if($forecastDay["day"]["daily_will_it_rain"] == 1)
+
+            if($forecastDay["daily_will_it_rain"] == 1)
             {
                 $weather_type="rainy";
-                $probability=$forecastDay["day"]["daily_chance_of_rain"];
+                $probability=$forecastDay["daily_chance_of_rain"];
             }
-            if($forecastDay["day"]["daily_will_it_snow"] == 1)
+            if($forecastDay["daily_will_it_snow"] == 1)
             {
                 $weather_type="snowy";
-                $probability=$forecastDay["day"]["daily_chance_of_snow"];
+                $probability=$forecastDay["daily_chance_of_snow"];
             }
             
             ForecastModel::create([
-                "date" => $forecastDay["date"],
-                "temperature" => $forecastDay["day"]["avgtemp_c"],
+                "date" => $forecastDayArray["date"],
+                "temperature" => $forecastDay["avgtemp_c"],
                 "city_id" => $cityObject->id,
                 "weather_type" => $weather_type,
                 "probability" => $probability
