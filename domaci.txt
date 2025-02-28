@@ -60,3 +60,9 @@ Domaci:
 
         BONUS:
             *Ako postoji prognoza za danas za taj grad, ne poziva se api
+
+    9. Pronaci API preko koga mozete da dobijete:
+        -Trenutni / danasnji kurs evra
+        -Trenutni / danasnji kurs dolara
+
+         *Napraviti komandu (web shop projekat) koja ce pozvati taj API i prikazati te podatke
