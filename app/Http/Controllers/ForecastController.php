@@ -9,9 +9,26 @@ use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class ForecastController extends Controller
 {
+
+    public function index(CityModel $city)
+    {
+        $response=Http::withoutVerifying()->get(env("WEATHER_API_URL") . "v1/astronomy.json",[
+            "key" => env("WEATHER_API_KEY"),
+            "q" => $city->name,
+            "aqi" => "no"
+        ]);
+
+        $reponseJson=$response->json();
+
+        $sunrise=$reponseJson["astronomy"]["astro"]["sunrise"];
+        $sunset=$reponseJson["astronomy"]["astro"]["sunset"];
+
+        return view("forecast",compact("city","sunrise","sunset"));
+    }
 
     public function search(Request $request)
     {

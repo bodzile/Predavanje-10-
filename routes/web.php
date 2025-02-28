@@ -54,7 +54,8 @@ Route::prefix("/forecast")->group(function(){
     Route::get("/search",[ForecastController::class,"search"])
         ->name("forecast.search");
 
-    Route::get("/{city:name}",[AdminForecastController::class,"index"])
+
+    Route::get("/{city:name}",[ForecastController::class,"index"])
         ->name("forecast.permalink");
 });
 
