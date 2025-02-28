@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\CityModel;
 use App\Models\ForecastModel;
+use App\Services\WeatherService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -28,16 +29,10 @@ class AddRealForecast extends Command
      */
     public function handle(string $city)
     {
-        $response=Http::withoutVerifying()->get(env("WEATHER_API_URL") . "v1/forecast.json",[
-            "key" => env("WEATHER_API_KEY"),
-            "q" => $city,
-            "aqi" => "no",
-            "days" => 14
-            
-        ]);
+        
+        $weatherService=new WeatherService();
+        $jsonResponse=$weatherService->getForecast($city);
 
-
-        $jsonResponse=$response->json();
         if(isset($jsonResponse["error"]))
         {
             return false;

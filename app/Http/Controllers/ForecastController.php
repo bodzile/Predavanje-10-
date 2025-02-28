@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Console\Commands\AddRealForecast;
 use App\Models\CityModel;
 use App\Models\ForecastModel;
+use App\Services\WeatherService;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -16,13 +17,8 @@ class ForecastController extends Controller
 
     public function index(CityModel $city)
     {
-        $response=Http::withoutVerifying()->get(env("WEATHER_API_URL") . "v1/astronomy.json",[
-            "key" => env("WEATHER_API_KEY"),
-            "q" => $city->name,
-            "aqi" => "no"
-        ]);
-
-        $reponseJson=$response->json();
+        $weatherService=new WeatherService();
+        $reponseJson=$weatherService->getAstronomy($city->name);
 
         $sunrise=$reponseJson["astronomy"]["astro"]["sunrise"];
         $sunset=$reponseJson["astronomy"]["astro"]["sunset"];
